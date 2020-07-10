@@ -4,11 +4,11 @@ import './App.css';
 
 function App() {
 
-  const [billTitle, setBillTitle] = useState();
-  const [billAmount, setBillAmount] = useState();
+  const [billTitle, setBillTitle] = useState('');
+  //need to assign initial value, otherwise react will treat it as null resulting uncontrolled form later on when using the state
+  const [billAmount, setBillAmount] = useState('');
   const [billsList, setBillsList] = useState([]);
   const [totalCosts, setTotalCosts] = useState(0);
-  console.log(billsList);
 
   const addBill = (e) => {
     e.preventDefault();
@@ -16,13 +16,14 @@ function App() {
         ...billsList,
       {
         billTitle: billTitle,
-        billAmount: billAmount
+        billAmount: billAmount,
+        checked: true,
+        id: Date.now()
       }
       ]);
     setTotalCosts(
         totalCosts + Math.round(parseFloat(billAmount)*100)/100
       );
-    console.log(typeof(parseFloat(totalCosts)));
     setBillTitle(
       ''
     );
@@ -31,22 +32,33 @@ function App() {
     );
   }
 
+  const changeBillCheckbox = (id) => {
+    let newBillsList = billsList.map(bill=> {
+      if (bill.id === id) {
+       bill.checked = !bill.checked;
+       return bill;
+      }
+      return bill;
+    });
+    setBillsList(newBillsList);
+  }
+
   return (
       <div className='bills-container'>
         <form className='add-bill-form-control' onSubmit={addBill}>
           <input type='text' placeholder='Bill Title' onChange={(e)=> setBillTitle(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billTitle} ></input>
           <input type='text' placeholder='Bill Amount' onChange={(e)=> setBillAmount(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billAmount} ></input>
-          <input type='submit' value='Add Bill'></input>
+          <input type='submit'></input>
         </form>
         <div className='bills-total-cost'>
-          <p>Monthly bill cost: {totalCosts}</p>
+          <p>Monthly bill cost: ${totalCosts}</p>
           <p>Monthly saved:</p>
         </div>
         <div className='bills-list'>
           {billsList.map(bill=>{
             return (
-              <div className='bill'>
-                <input type='checkbox'></input>
+              <div className='bill' key={bill.id}>
+                <input type='checkbox' checked={bill.checked} onChange={()=>changeBillCheckbox(bill.id)}></input>
                 <li>{bill.billTitle}: ${bill.billAmount}</li>
               </div>
             )
