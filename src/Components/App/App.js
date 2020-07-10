@@ -9,6 +9,7 @@ function App() {
   const [billAmount, setBillAmount] = useState('');
   const [billsList, setBillsList] = useState([]);
   const [totalCosts, setTotalCosts] = useState(0);
+  const [saved, setSaved] = useState(0);
 
   const addBill = (e) => {
     e.preventDefault();
@@ -41,6 +42,16 @@ function App() {
       return bill;
     });
     setBillsList(newBillsList);
+
+    let newSaved=0;
+
+    billsList.map(bill=> {
+      if (bill.checked === false) {
+        newSaved += Math.round(parseFloat(bill.billAmount)*100 )/100
+      }
+      return bill
+    });
+    setSaved(newSaved);
   }
 
   return (
@@ -52,7 +63,7 @@ function App() {
         </form>
         <div className='bills-total-cost'>
           <p>Monthly bill cost: ${totalCosts}</p>
-          <p>Monthly saved:</p>
+          <p>Monthly saved: ${saved}</p>
         </div>
         <div className='bills-list'>
           {billsList.map(bill=>{
