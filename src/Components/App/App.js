@@ -10,6 +10,16 @@ function App() {
   const [billsList, setBillsList] = useState([]);
   const [totalCosts, setTotalCosts] = useState(0);
   const [saved, setSaved] = useState(0);
+  const [periodCosts, setPeriodCosts] = useState();
+  const [periodSaved, setPeriodSaved] = useState();
+  const [period, setPeriod] = useState('Monthly');
+
+  const converse = (period) => {
+    if (period === 'monthly') {
+      setPeriodCosts(totalCosts);
+      setPeriodSaved(saved);
+    }
+  }
 
   const addBill = (e) => {
     e.preventDefault();
@@ -56,16 +66,24 @@ function App() {
 
   return (
       <div className='bills-container'>
+        <nav className='filter-nav'>
+          <ul>
+            <li><button onClick={()=>{setPeriod('Daily'); converse('Daily')}}>Daily</button></li>
+            <li><button onClick={()=>{setPeriod('Monthly'); converse('Monthly')}}>Monthly</button></li>
+            <li><button onClick={()=>{setPeriod('Yearly'); converse('Yearly')}}>Yearly</button></li>
+          </ul>
+        </nav>
         <form className='add-bill-form-control' onSubmit={addBill}>
           <input type='text' placeholder='Bill Title' onChange={(e)=> setBillTitle(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billTitle} ></input>
-          <input type='text' placeholder='Bill Amount' onChange={(e)=> setBillAmount(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billAmount} ></input>
+          <input type='text' placeholder='Enter Monthly Bill' onChange={(e)=> setBillAmount(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billAmount} ></input>
           <input type='submit'></input>
         </form>
         <div className='bills-total-cost'>
-          <p>Monthly bill cost: ${totalCosts}</p>
-          <p>Monthly saved: ${saved}</p>
+          <p>{period} bill cost: ${totalCosts}</p>
+          <p>{period} saved: ${saved}</p>
         </div>
         <div className='bills-list'>
+          <div>Monthly Bill</div>
           {billsList.map(bill=>{
             return (
               <div className='bill' key={bill.id}>
