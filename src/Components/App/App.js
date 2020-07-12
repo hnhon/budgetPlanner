@@ -10,14 +10,20 @@ function App() {
   const [billsList, setBillsList] = useState([]);
   const [totalCosts, setTotalCosts] = useState(0);
   const [saved, setSaved] = useState(0);
+  const [period, setPeriod] = useState('monthly');
   const [periodCosts, setPeriodCosts] = useState();
   const [periodSaved, setPeriodSaved] = useState();
-  const [period, setPeriod] = useState('Monthly');
 
   const converse = (period) => {
     if (period === 'monthly') {
       setPeriodCosts(totalCosts);
       setPeriodSaved(saved);
+    } else if (period === 'yearly') {
+      setPeriodCosts(totalCosts*12);
+      setPeriodSaved(saved*12)
+    } else if (period === 'daily') {
+      setPeriodCosts(Math.round((totalCosts/30)*100)/100); 
+      setPeriodSaved(Math.round((saved/30)*100)/100)
     }
   }
 
@@ -68,9 +74,9 @@ function App() {
       <div className='bills-container'>
         <nav className='filter-nav'>
           <ul>
-            <li><button onClick={()=>{setPeriod('Daily'); converse('Daily')}}>Daily</button></li>
-            <li><button onClick={()=>{setPeriod('Monthly'); converse('Monthly')}}>Monthly</button></li>
-            <li><button onClick={()=>{setPeriod('Yearly'); converse('Yearly')}}>Yearly</button></li>
+            <li><button onClick={()=>{setPeriod('daily'); converse('daily') }}>Daily</button></li>
+            <li><button onClick={()=>{setPeriod('monthly'); converse('monthly')}}>Monthly</button></li>
+            <li><button onClick={()=>{setPeriod('yearly'); converse('yearly')}}>Yearly</button></li>
           </ul>
         </nav>
         <form className='add-bill-form-control' onSubmit={addBill}>
@@ -79,8 +85,8 @@ function App() {
           <input type='submit'></input>
         </form>
         <div className='bills-total-cost'>
-          <p>{period} bill cost: ${totalCosts}</p>
-          <p>{period} saved: ${saved}</p>
+          <p>{period} bill cost: $ {period==='monthly'?totalCosts:periodCosts} </p>
+          <p>{period} saved: $ {period==='monthly'?saved:periodSaved}</p>
         </div>
         <div className='bills-list'>
           <div>Monthly Bill</div>
