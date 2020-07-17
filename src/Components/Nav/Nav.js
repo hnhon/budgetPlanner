@@ -1,14 +1,14 @@
-import React, { useState } from 'react';  
+import React from 'react';
+import Button from '@material-ui/core/Button';
 
-function Nav (props) {
-
+function Nav(props) {
     return (
         <nav className='filter-nav'>
-          <ul>
-            <Button variant='outlined' color='primary' onClick={()=>{props.setPeriod('daily'); props.converse('daily') }}>Daily</Button>
-            <Button variant='outlined' color='primary' onClick={()=>{setPeriod('monthly'); converse('monthly')}}>Monthly</Button>
-            <Button variant='outlined' color='primary' onClick={()=>{setPeriod('yearly'); converse('yearly')}}>Yearly</Button>
-          </ul>
+            <ul>
+                <Button variant='outlined' color='primary' onClick={() => { props.setPeriod('daily'); props.converse('daily') }}>Daily</Button>
+                <Button variant='outlined' color='primary' onClick={() => { props.setPeriod('monthly'); props.converse('monthly') }}>Monthly</Button>
+                <Button variant='outlined' color='primary' onClick={() => { props.setPeriod('yearly'); props.converse('yearly') }}>Yearly</Button>
+            </ul>
         </nav>
     )
 }
