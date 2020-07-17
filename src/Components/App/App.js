@@ -1,6 +1,8 @@
 import React, { useState } from 'react';  
 import './App.css';
-
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 function App() {
 
@@ -74,30 +76,40 @@ function App() {
       <div className='bills-container'>
         <nav className='filter-nav'>
           <ul>
-            <li><button onClick={()=>{setPeriod('daily'); converse('daily') }}>Daily</button></li>
-            <li><button onClick={()=>{setPeriod('monthly'); converse('monthly')}}>Monthly</button></li>
-            <li><button onClick={()=>{setPeriod('yearly'); converse('yearly')}}>Yearly</button></li>
+            <Button variant='outlined' color='primary' onClick={()=>{setPeriod('daily'); converse('daily') }}>Daily</Button>
+            <Button variant='outlined' color='primary' onClick={()=>{setPeriod('monthly'); converse('monthly')}}>Monthly</Button>
+            <Button variant='outlined' color='primary' onClick={()=>{setPeriod('yearly'); converse('yearly')}}>Yearly</Button>
           </ul>
         </nav>
+        <Grid container>
         <form className='add-bill-form-control' onSubmit={addBill}>
-          <input type='text' placeholder='Bill Title' onChange={(e)=> setBillTitle(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billTitle} ></input>
-          <input type='text' placeholder='Enter Monthly Bill' onChange={(e)=> setBillAmount(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billAmount} ></input>
-          <input type='submit'></input>
+          <div>
+            <input type='text' placeholder='Bill Title' onChange={(e)=> setBillTitle(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billTitle} ></input>
+          </div>
+          <div>
+            <input type='text' placeholder='Enter Monthly Bill' onChange={(e)=> setBillAmount(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billAmount} ></input>
+          </div>
+          <div>
+            <input type='submit'></input>
+          </div>
         </form>
+        </Grid>
         <div className='bills-total-cost'>
           <p>{period} bill cost: $ {period==='monthly'?totalCosts:periodCosts} </p>
           <p>{period} saved: $ {period==='monthly'?saved:periodSaved}</p>
         </div>
         <div className='bills-list'>
           <div>Monthly Bill</div>
+          <ul>
           {billsList.map(bill=>{
             return (
-              <div className='bill' key={bill.id}>
-                <input type='checkbox' checked={bill.checked} onChange={()=>changeBillCheckbox(bill.id)}></input>
-                <li>{bill.billTitle}: ${bill.billAmount}</li>
-              </div>
+              <li className='bill' key={bill.id}>
+                  <Checkbox checked={bill.checked} onChange={()=>changeBillCheckbox(bill.id)}></Checkbox>
+                  <span>{bill.billTitle}: ${bill.billAmount}</span>
+              </li>
             )
           })}
+          </ul>
         </div>
       </div>
   );

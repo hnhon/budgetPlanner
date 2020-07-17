@@ -7,12 +7,23 @@
 }
 
 .filter-nav {
+    padding-top: 10px;
+    padding-bottom: 10px;
     height:50px;
 }
 
 .filter-nav ul {
-    list-style: none;
+    margin-top: 0;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+.add-bill-form-control {
+    margin: auto;
+}
+
+.bills-list li {
+    list-style: none;
     align-items: center;
 }
