@@ -1,0 +1,12 @@
+.filter-nav {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height:50px;
+}
+
+.filter-nav ul {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

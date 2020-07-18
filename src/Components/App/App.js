@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Grid, Container } from '@material-ui/core';
 import Nav from '../Nav/Nav';
 import Form from '../Form/Form'
 import BillSummary from './../BillSummary/BillSummary';
@@ -73,12 +74,22 @@ function App() {
   }
 
   return (
-    <div className='bills-container'>
-      <Nav converse={converse} setPeriod={setPeriod} />
-      <Form addBill={addBill} setBillTitle={setBillTitle} billTitle={billTitle} setBillAmount={setBillAmount} billAmount={billAmount} />
-      <BillSummary period={period} totalCosts={totalCosts} periodCosts={periodCosts} saved={saved} periodSaved={periodSaved} />
-      <BillsList billsList={billsList} changeBillCheckbox={changeBillCheckbox} />
-    </div>
+    <Container maxWidth='sm'>
+      <Grid container className='bills-container'>
+        <Grid item xs={12}>
+          <Nav converse={converse} setPeriod={setPeriod} />
+        </Grid>
+        <Grid item container xs={12}>
+          <Form addBill={addBill} setBillTitle={setBillTitle} billTitle={billTitle} setBillAmount={setBillAmount} billAmount={billAmount} />
+        </Grid>
+        <Grid item container xs={12}>
+          <BillSummary period={period} totalCosts={totalCosts} periodCosts={periodCosts} saved={saved} periodSaved={periodSaved} />
+        </Grid>
+        <Grid item container xs={12}>
+          <BillsList billsList={billsList} changeBillCheckbox={changeBillCheckbox} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
