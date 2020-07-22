@@ -1,24 +1,24 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CostsContext = createContext();
 
 function CostsContextProvider (props) {
-    const [costs, setCosts] = useState([{
+    const [costs, setCosts] = useState({
         monthlyCosts: 0,
         yearlyCosts: 0,
         dailyCosts: 0
-    }]);
+    });
 
     const updateCosts = (amount) => {
         let newMonthlyCosts = costs.monthlyCosts + amount;
         let newYearlyCosts = costs.yearlyCosts + amount*12;
         let newDailyCosts = costs.dailyCosts + amount/30;
         setCosts(
-            [...costs, {
+            {
                 monthlyCosts: newMonthlyCosts,
                 yearlyCosts: newYearlyCosts,
                 dailyCosts: newDailyCosts
-            }]
+            }
         )
     }
 
