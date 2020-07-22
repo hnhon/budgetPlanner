@@ -7,7 +7,7 @@ function Form(props) {
     const [billTitle, setBillTitle] = useState('');
     const [billAmount, setBillAmount] = useState('');
     const {billsList, setBillsList} = useContext(BillsListContext);
-    const {costs, updateCosts} = useContext(CostsContext);
+    const {updateCosts} = useContext(CostsContext);
 
     const addBill = (e) => {
         e.preventDefault();

@@ -7,6 +7,7 @@ import BillSummary from './../BillSummary/BillSummary';
 import BillsList from './../BillsList/BillsList';
 import BillsListProvider from '../../contexts/BillsListContext';
 import CostsProvider from '../../contexts/CostsContext';
+import SavingsProvider from '../../contexts/SavingsContext';
 
 function App() {
   const [billsList, setBillsList] = useState([]);
@@ -53,22 +54,24 @@ function App() {
   return (
     <BillsListProvider>
       <CostsProvider>
-        <Container maxWidth='sm'>
-          <Grid container className='bills-container'>
-            <Grid item xs={12}>
-              <Nav converse={converse} setPeriod={setPeriod} />
+        <SavingsProvider>
+          <Container maxWidth='sm'>
+            <Grid container className='bills-container'>
+              <Grid item xs={12}>
+                <Nav converse={converse} setPeriod={setPeriod} />
+              </Grid>
+              <Grid item container xs={12}>
+                <Form setTotalCosts={setTotalCosts} totalCosts={totalCosts} />
+              </Grid>
+              <Grid item container xs={12}>
+                <BillSummary period={period} setPeriod={setPeriod} totalCosts={totalCosts} periodCosts={periodCosts} saved={saved} periodSaved={periodSaved} />
+              </Grid>
+              <Grid item container xs={12}>
+                <BillsList changeBillCheckbox={changeBillCheckbox} />
+              </Grid>
             </Grid>
-            <Grid item container xs={12}>
-              <Form setTotalCosts={setTotalCosts} totalCosts={totalCosts} />
-            </Grid>
-            <Grid item container xs={12}>
-              <BillSummary period={period} setPeriod={setPeriod} totalCosts={totalCosts} periodCosts={periodCosts} saved={saved} periodSaved={periodSaved} />
-            </Grid>
-            <Grid item container xs={12}>
-              <BillsList changeBillCheckbox={changeBillCheckbox} />
-            </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </SavingsProvider>
       </CostsProvider>
     </BillsListProvider>
   );
