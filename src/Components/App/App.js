@@ -40,15 +40,15 @@ function App() {
     });
     setBillsList(newBillsList);
 
-    let newSaved = 0;
+    // let newSaved = 0;
 
-    billsList.map(bill => {
-      if (bill.checked === false) {
-        newSaved += Math.round(parseFloat(bill.billAmount) * 100) / 100
-      }
-      return bill
-    });
-    setSaved(newSaved);
+    // billsList.map(bill => {
+    //   if (bill.checked === false) {
+    //     newSaved += Math.round(parseFloat(bill.billAmount) * 100) / 100
+    //   }
+    //   return bill
+    // });
+    // setSaved(newSaved);
   }
 
   return (

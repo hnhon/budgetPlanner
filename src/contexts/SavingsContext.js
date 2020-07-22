@@ -12,9 +12,9 @@ const SavingsContextProvider = (props) => {
     const updateSavings = (amount) => {
         setSavings(
             {
-                monthlySavings: monthlySavings+amount,
-                yearlySavings: yearlySavings+amount*12,
-                dailySavings: dailySavings+amount/30
+                monthlySavings: amount,
+                yearlySavings: amount*12,
+                dailySavings: amount/30
             }
         )
     }
