@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Checkbox, Grid } from '@material-ui/core';
+import { BillsListContext } from '../../contexts/BillsListContext';
 
 function BillsList(props) {
+    const {billsList} = useContext(BillsListContext);
     return (
         <>
             <Grid item xs={4}></Grid>
@@ -9,7 +11,7 @@ function BillsList(props) {
                 <div className='bills-list'>
                     <div>Monthly Bill</div>
                     <ul>
-                        {props.billsList.map(bill => {
+                        {billsList.map(bill => {
                             return (
                                 <li className='bill' key={bill.id}>
                                     <Checkbox checked={bill.checked} onChange={() => props.changeBillCheckbox(bill.id)}></Checkbox>

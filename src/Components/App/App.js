@@ -5,11 +5,10 @@ import Nav from '../Nav/Nav';
 import Form from '../Form/Form'
 import BillSummary from './../BillSummary/BillSummary';
 import BillsList from './../BillsList/BillsList';
+import BillsListProvider from '../../contexts/BillsListContext';
+import CostsProvider from '../../contexts/CostsContext';
 
 function App() {
-  const [billTitle, setBillTitle] = useState('');
-  //need to assign initial value, otherwise react will treat it as null resulting uncontrolled form later on when using the state
-  const [billAmount, setBillAmount] = useState('');
   const [billsList, setBillsList] = useState([]);
   const [totalCosts, setTotalCosts] = useState(0);
   const [saved, setSaved] = useState(0);
@@ -28,28 +27,6 @@ function App() {
       setPeriodCosts(Math.round((totalCosts / 30) * 100) / 100);
       setPeriodSaved(Math.round((saved / 30) * 100) / 100)
     }
-  }
-
-  const addBill = (e) => {
-    e.preventDefault();
-    setBillsList([
-      ...billsList,
-      {
-        billTitle: billTitle,
-        billAmount: billAmount,
-        checked: true,
-        id: Date.now()
-      }
-    ]);
-    setTotalCosts(
-      totalCosts + Math.round(parseFloat(billAmount) * 100) / 100
-    );
-    setBillTitle(
-      ''
-    );
-    setBillAmount(
-      ''
-    );
   }
 
   const changeBillCheckbox = (id) => {
@@ -74,22 +51,26 @@ function App() {
   }
 
   return (
-    <Container maxWidth='sm'>
-      <Grid container className='bills-container'>
-        <Grid item xs={12}>
-          <Nav converse={converse} setPeriod={setPeriod} />
-        </Grid>
-        <Grid item container xs={12}>
-          <Form addBill={addBill} setBillTitle={setBillTitle} billTitle={billTitle} setBillAmount={setBillAmount} billAmount={billAmount} />
-        </Grid>
-        <Grid item container xs={12}>
-          <BillSummary period={period} totalCosts={totalCosts} periodCosts={periodCosts} saved={saved} periodSaved={periodSaved} />
-        </Grid>
-        <Grid item container xs={12}>
-          <BillsList billsList={billsList} changeBillCheckbox={changeBillCheckbox} />
-        </Grid>
-      </Grid>
-    </Container>
+    <BillsListProvider>
+      <CostsProvider>
+        <Container maxWidth='sm'>
+          <Grid container className='bills-container'>
+            <Grid item xs={12}>
+              <Nav converse={converse} setPeriod={setPeriod} />
+            </Grid>
+            <Grid item container xs={12}>
+              <Form setTotalCosts={setTotalCosts} totalCosts={totalCosts} />
+            </Grid>
+            <Grid item container xs={12}>
+              <BillSummary period={period} setPeriod={setPeriod} totalCosts={totalCosts} periodCosts={periodCosts} saved={saved} periodSaved={periodSaved} />
+            </Grid>
+            <Grid item container xs={12}>
+              <BillsList changeBillCheckbox={changeBillCheckbox} />
+            </Grid>
+          </Grid>
+        </Container>
+      </CostsProvider>
+    </BillsListProvider>
   );
 }
 
