@@ -8,14 +8,14 @@ function Nav() {
 
     return (
         <>
-            <Grid item xs={4}>
-                <Button color='primary' onClick={() => { setPeriodical('Daily') }} >Daily</Button>
+            <Grid item container xs={4}>
+                <Grid item xs={4}><Button color='primary' onClick={() => { setPeriodical('Daily') }} >Daily</Button></Grid>
             </Grid>
-            <Grid item xs={4}>
-                <Button color='primary' onClick={() => { setPeriodical('Monthly') }} >Monthly</Button>
+            <Grid item container xs={4}>
+                <Grid item xs={4}><Button color='primary' onClick={() => { setPeriodical('Monthly') }} >Monthly</Button></Grid>
             </Grid>
-            <Grid item xs={4}>
-                <Button color='primary' onClick={() => { setPeriodical('Yearly') }} >Yearly</Button>
+            <Grid item container xs={4}>
+                <Grid item xs={4}><Button color='primary' onClick={() => { setPeriodical('Yearly') }} >Yearly</Button></Grid>
             </Grid>
         </>
     )

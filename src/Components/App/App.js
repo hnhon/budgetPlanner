@@ -19,8 +19,8 @@ function App() {
           <PeriodicalProvider>
             <Box mt={10} />
             <Grid container>
-              <Grid item xs={2} />
-              <Grid container item xs={8} style={{ boxShadow: '2px 5px 20px gray' }}>
+              <Grid item xs={2} sm={4} />
+              <Grid container item xs={8} sm={4} style={{ boxShadow: '2px 5px 20px gray' }}>
                 <Grid item container xs={12}>
                   <Nav />
                 </Grid>
@@ -34,7 +34,7 @@ function App() {
                   <BillsList />
                 </Grid>
               </Grid>
-              <Grid item xs={2} />
+              <Grid item xs={2} sm={4} />
             </Grid>
             <Box mb={10} />
           </PeriodicalProvider>
