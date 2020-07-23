@@ -3,7 +3,7 @@ import { Checkbox, Grid } from '@material-ui/core';
 import { BillsListContext } from '../../contexts/BillsListContext';
 import { SavingsContext } from '../../contexts/SavingsContext';
 
-function BillsList(props) {
+function BillsList() {
     const { billsList, setBillsList } = useContext(BillsListContext);
     const { updateSavings } = useContext(SavingsContext);
 
@@ -20,10 +20,10 @@ function BillsList(props) {
         let savedAmount = 0;
 
         billsList.map(bill => {
-          if (bill.checked === false) {
-            savedAmount += Math.round(parseFloat(bill.billAmount) * 100) / 100
-          }
-          return bill
+            if (bill.checked === false) {
+                savedAmount += Math.round(parseFloat(bill.billAmount) * 100) / 100
+            }
+            return bill
         });
         updateSavings(savedAmount);
     }
@@ -38,7 +38,7 @@ function BillsList(props) {
                         {billsList.map(bill => {
                             return (
                                 <li className='bill' key={bill.id}>
-                                    <Checkbox checked={bill.checked} onChange={() => { changeBillCheckbox(bill.id)}}></Checkbox>
+                                    <Checkbox checked={bill.checked} onChange={() => { changeBillCheckbox(bill.id) }}></Checkbox>
                                     <span>{bill.billTitle}: ${bill.billAmount}</span>
                                 </li>
                             )
