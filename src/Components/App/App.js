@@ -18,8 +18,8 @@ function App() {
         <SavingsProvider>
           <PeriodicalProvider>
             <Container maxWidth='sm'>
-              <Grid container className='bills-container'>
-                <Grid item xs={12}>
+              <Grid container spacing={16} xs={12} className='bills-container'>
+                <Grid item container xs={12}>
                   <Nav />
                 </Grid>
                 <Grid item container xs={12}>

@@ -33,8 +33,8 @@ function BillsList() {
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
                 <div className='bills-list'>
-                    <div style={{fontSize: '1.25rem'}}>Monthly Bill</div>
-                    <ul style={{padding: '0', fontSize: '1.25rem'}}>
+                    <div>Monthly Bill</div>
+                    <ul style={{padding: '0'}}>
                         {billsList.map(bill => {
                             return (
                                 <li className='bill' key={bill.id}>
