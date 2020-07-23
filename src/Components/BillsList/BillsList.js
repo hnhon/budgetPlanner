@@ -33,12 +33,12 @@ function BillsList() {
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
                 <div className='bills-list'>
-                    <div>Monthly Bill</div>
-                    <ul>
+                    <div style={{fontSize: '1.25rem'}}>Monthly Bill</div>
+                    <ul style={{padding: '0', fontSize: '1.25rem'}}>
                         {billsList.map(bill => {
                             return (
                                 <li className='bill' key={bill.id}>
-                                    <Checkbox checked={bill.checked} onChange={() => { changeBillCheckbox(bill.id) }}></Checkbox>
+                                    <Checkbox style={{paddingLeft: '0'}} checked={bill.checked} onChange={() => { changeBillCheckbox(bill.id) }}></Checkbox>
                                     <span>{bill.billTitle}: ${bill.billAmount}</span>
                                 </li>
                             )
