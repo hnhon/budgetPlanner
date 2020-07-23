@@ -30,8 +30,8 @@ function BillsList() {
 
     return (
         <>
-            <Grid item xs={4}></Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3} sm={4}></Grid>
+            <Grid item xs={6} sm={4}>
                 <div className='bills-list'>
                     <div>Monthly Bill</div>
                     <ul style={{padding: '0'}}>
@@ -46,7 +46,7 @@ function BillsList() {
                     </ul>
                 </div>
             </Grid>
-            <Grid item xs={4}></Grid>
+            <Grid item xs={3} sm={4}></Grid>
         </>
     )
 };

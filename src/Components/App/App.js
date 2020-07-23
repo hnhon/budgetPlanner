@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import Nav from '../Nav/Nav';
 import Form from '../Form/Form'
 import BillSummary from './../BillSummary/BillSummary';
@@ -17,8 +17,10 @@ function App() {
       <CostsProvider>
         <SavingsProvider>
           <PeriodicalProvider>
-            <Container maxWidth='sm'>
-              <Grid container className='bills-container'>
+            <Box mt={10} />
+            <Grid container>
+              <Grid item xs={2} />
+              <Grid container item xs={8} style={{ boxShadow: '2px 5px 20px gray' }}>
                 <Grid item container xs={12}>
                   <Nav />
                 </Grid>
@@ -32,7 +34,9 @@ function App() {
                   <BillsList />
                 </Grid>
               </Grid>
-            </Container>
+              <Grid item xs={2} />
+            </Grid>
+            <Box mb={10} />
           </PeriodicalProvider>
         </SavingsProvider>
       </CostsProvider>

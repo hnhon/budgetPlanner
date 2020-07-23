@@ -12,8 +12,8 @@ function BillSummary() {
 
     return (
         <>
-            <Grid item xs={4}></Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3} sm={4}></Grid>
+            <Grid item xs={6} sm={4}>
                 <div className='bills-total-cost'>
                     <p>{periodical} bill cost: </p>
                     <p> $ {periodical === 'Monthly' ? costs.monthlyCosts : (periodical === 'Yearly' ? costs.yearlyCosts : costs.dailyCosts)} </p>
@@ -21,7 +21,7 @@ function BillSummary() {
                     <p> $ {periodical === 'Monthly' ? savings.monthlySavings : (periodical === 'Yearly' ? savings.yearlySavings : savings.dailySavings)}</p>
                 </div>
             </Grid>
-            <Grid item xs={4}></Grid>
+            <Grid item xs={3} sm={4}></Grid>
         </>
     )
 };

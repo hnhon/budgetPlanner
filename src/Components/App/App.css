@@ -1,8 +1,6 @@
 .bills-container {
     box-shadow: 2px 5px 20px gray;
     height: auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
 }
 
 .bills-list li {

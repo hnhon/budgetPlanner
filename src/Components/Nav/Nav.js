@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Tab, Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import { PeriodicalContext } from '../../contexts/PeriodicalContext';
 
 function Nav() {
@@ -9,13 +9,13 @@ function Nav() {
     return (
         <>
             <Grid item xs={4}>
-                <Tab style={{padding: '0'}} label='Daily' variant='outlined' color='primary' onClick={() => { setPeriodical('Daily') }} />
+                <Button color='primary' onClick={() => { setPeriodical('Daily') }} >Daily</Button>
             </Grid>
             <Grid item xs={4}>
-                <Tab style={{padding: '0'}} label='Monthly' variant='outlined' color='primary' onClick={() => { setPeriodical('Monthly') }} />
+                <Button color='primary' onClick={() => { setPeriodical('Monthly') }} >Monthly</Button>
             </Grid>
             <Grid item xs={4}>
-                <Tab style={{padding: '0'}} label='Yearly' variant='outlined' color='primary' onClick={() => { setPeriodical('Yearly') }} />
+                <Button color='primary' onClick={() => { setPeriodical('Yearly') }} >Yearly</Button>
             </Grid>
         </>
     )
