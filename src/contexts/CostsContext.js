@@ -10,9 +10,9 @@ function CostsContextProvider(props) {
     });
 
     const updateCosts = (amount) => {
-        let newMonthlyCosts = costs.monthlyCosts + amount;
-        let newYearlyCosts = costs.yearlyCosts + amount * 12;
-        let newDailyCosts = costs.dailyCosts + amount / 30;
+        let newMonthlyCosts = Math.round( (costs.monthlyCosts + amount)*100 )/100 ;
+        let newYearlyCosts =  Math.round( (costs.yearlyCosts + amount * 12) )/100 ;
+        let newDailyCosts = Math.round( (costs.dailyCosts + amount / 30)*100 )/100 ;
         setCosts(
             {
                 monthlyCosts: newMonthlyCosts,

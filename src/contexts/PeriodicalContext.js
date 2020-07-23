@@ -4,7 +4,7 @@ export const PeriodicalContext = createContext();
 
 const PeriodicalContextProvider = (props) => {
 
-    const [periodical, setPeriodical] = useState('monthly')
+    const [periodical, setPeriodical] = useState('Monthly')
 
     return (
         <PeriodicalContext.Provider value={{ periodical, setPeriodical }}>

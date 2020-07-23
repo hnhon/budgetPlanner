@@ -15,9 +15,8 @@ function BillSummary() {
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
                 <div className='bills-total-cost'>
-                    <h1>{costs.monthlyCosts}</h1>
-                    <p>{periodical[0].toUpperCase() + periodical.substring(1)} bill cost: $ {periodical === 'monthly' ? costs.monthlyCosts : (periodical === 'yearly' ? costs.yearlyCosts : costs.dailyCosts)} </p>
-                    <p>{periodical[0].toUpperCase() + periodical.substring(1)} saved: $ {periodical === 'monthly' ? savings.monthlySavings : (periodical === 'yearly' ? savings.yearlySavings : savings.dailySavings)}</p>
+                    <p>{periodical} bill cost: $ {periodical === 'Monthly' ? costs.monthlyCosts : (periodical === 'Yearly' ? costs.yearlyCosts : costs.dailyCosts)} </p>
+                    <p>{periodical} saved: $ {periodical === 'Monthly' ? savings.monthlySavings : (periodical === 'Yearly' ? savings.yearlySavings : savings.dailySavings)}</p>
                 </div>
             </Grid>
             <Grid item xs={4}></Grid>

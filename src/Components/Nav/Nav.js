@@ -10,9 +10,9 @@ function Nav() {
     return (
         <nav className='filter-nav'>
             <ul>
-                <Tab label='Daily' variant='outlined' color='primary' onClick={() => { setPeriodical('daily') }} />
-                <Tab label='Monthly' variant='outlined' color='primary' onClick={() => { setPeriodical('monthly') }} />
-                <Tab label='Yearly' variant='outlined' color='primary' onClick={() => { setPeriodical('yearly') }} />
+                <Tab label='Daily' variant='outlined' color='primary' onClick={() => { setPeriodical('Daily') }} />
+                <Tab label='Monthly' variant='outlined' color='primary' onClick={() => { setPeriodical('Monthly') }} />
+                <Tab label='Yearly' variant='outlined' color='primary' onClick={() => { setPeriodical('Yearly') }} />
             </ul>
         </nav>
     )
