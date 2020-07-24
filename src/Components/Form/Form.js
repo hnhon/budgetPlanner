@@ -39,8 +39,8 @@ function Form() {
 
   return (
     <>
-      <Grid item xs={3} sm={4}></Grid>
-      <Grid item xs={6} sm={4}>
+      <Grid item xs={1} sm={4}></Grid>
+      <Grid item xs={10} sm={4}>
         <form className='add-bill-form-control' onSubmit={(e) => { addBill(e); updateCosts(parseFloat(billAmount)) }}>
           <TextField type='text' label='Bill Title' onChange={(e) => setBillTitle(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billTitle} required /><br/>
           <TextField type='number' label='Monthly Bill' onChange={(e) => setBillAmount(e.target.value)} onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }} value={billAmount} required /><br/>
@@ -49,7 +49,7 @@ function Form() {
           </Box>
         </form>
       </Grid>
-      <Grid item xs={3} sm={4}></Grid>
+      <Grid item xs={1} sm={4}></Grid>
     </>
   )
 };
