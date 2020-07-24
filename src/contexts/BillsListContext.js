@@ -3,7 +3,9 @@ import React, { createContext, useState } from 'react';
 export const BillsListContext = createContext();
 
 function BillsListContextProvider(props) {
-    const [billsList, setBillsList] = useState([]);
+
+    const data = JSON.parse(localStorage.getItem('billsList')); 
+    const [billsList, setBillsList] = useState(data == null? []: data);
 
     return (
         <BillsListContext.Provider value={{ billsList, setBillsList }}>

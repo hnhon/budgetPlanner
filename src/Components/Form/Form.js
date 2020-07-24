@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Grid, TextField, Button, Box } from '@material-ui/core';
 import { BillsListContext } from '../../contexts/BillsListContext'
 import { CostsContext } from '../../contexts/CostsContext';
@@ -7,7 +7,7 @@ function Form() {
   const [billTitle, setBillTitle] = useState('');
   const [billAmount, setBillAmount] = useState('');
   const { billsList, setBillsList } = useContext(BillsListContext);
-  const { updateCosts } = useContext(CostsContext);
+  const { costs, updateCosts } = useContext(CostsContext);
 
   const addBill = (e) => {
     e.preventDefault();
@@ -20,6 +20,7 @@ function Form() {
         id: Date.now()
       }]
     );
+
     setBillTitle(
       ''
     );
@@ -27,6 +28,14 @@ function Form() {
       ''
     );
   }
+
+  useEffect(()=> {
+    localStorage.setItem('billsList',  JSON.stringify(billsList));
+  }, [billsList])
+
+  useEffect(()=> {
+    localStorage.setItem('costs',  JSON.stringify(costs));
+  }, [costs])
 
   return (
     <>

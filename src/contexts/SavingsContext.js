@@ -3,11 +3,14 @@ import React, { createContext, useState } from 'react';
 export const SavingsContext = createContext();
 
 const SavingsContextProvider = (props) => {
-    const [savings, setSavings] = useState({
-        monthlySavings: 0,
-        yearlySavings: 0,
-        dailySavings: 0
-    });
+
+    const data = JSON.parse(localStorage.getItem('savings'));
+
+    const [savings, setSavings] = useState(
+        localStorage.getItem('savings') == null? 
+        {monthlySavings: 0,yearlySavings: 0,dailySavings: 0}:
+        data
+        );
 
     const updateSavings = (savedAmount) => {
         setSavings(

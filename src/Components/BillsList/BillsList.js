@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Checkbox, Grid } from '@material-ui/core';
 import { BillsListContext } from '../../contexts/BillsListContext';
 import { SavingsContext } from '../../contexts/SavingsContext';
 
 function BillsList() {
     const { billsList, setBillsList } = useContext(BillsListContext);
-    const { updateSavings } = useContext(SavingsContext);
+    const { savings, updateSavings } = useContext(SavingsContext);
+
+    useEffect(()=> {
+        localStorage.setItem('savings', JSON.stringify(savings))
+    }, [savings])
 
     const changeBillCheckbox = (id) => {
         let newBillsList = billsList.map(bill => {
